@@ -28,6 +28,7 @@ RUN	bash -c ' \
 		composer global require "phpmd/phpmd=*" --no-update; \
 		composer global require "sebastian/phpcpd=*" --no-update; \
 		composer global require "theseer/phpdox=*" --no-update; \
+		composer global require "fabpot/php-cs-fixer=*" --no-update; \
 		composer global update --prefer-source --no-interaction; '; \
 	ln -s /var/composer/bin/pdepend /usr/local/bin/; \
 	ln -s /var/composer/bin/phpcpd /usr/local/bin/; \
@@ -35,7 +36,8 @@ RUN	bash -c ' \
 	ln -s /var/composer/bin/phpdox /usr/local/bin/; \
 	ln -s /var/composer/bin/phploc /usr/local/bin/; \
 	ln -s /var/composer/bin/phpmd /usr/local/bin/; \
-	ln -s /var/composer/bin/phpunit /usr/local/bin/;
+	ln -s /var/composer/bin/phpunit /usr/local/bin/; \
+	ln -s /var/composer/bin/php-cs-fixer /usr/local/bin/;
 
 RUN	phpcs --config-set installed_paths /var/composer/vendor/escapestudios/symfony2-coding-standard;
 
