@@ -11,7 +11,7 @@ RUN apt-get update \
   && apt-get install -y \
 	  ant \
 	  git \
-	  php5 php5-cli php5-xsl php5-json php5-curl php5-sqlite php5-mysqlnd php5-xdebug php5-intl php5-mcrypt php-codecoverage \
+	  php5 php5-cli php5-xsl php5-json php5-curl php5-sqlite php5-mysqlnd php5-xdebug php5-gd php5-intl php5-mcrypt php-codecoverage \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
