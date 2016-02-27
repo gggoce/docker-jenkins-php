@@ -1,0 +1,9 @@
+phpunit/phpunit:
+squizlabs/php_codesniffer:
+escapestudios/symfony2-coding-standard:
+phploc/phploc:
+pdepend/pdepend:
+phpmd/phpmd:
+sebastian/phpcpd:
+theseer/phpdox:
+fabpot/php-cs-fixer:
