@@ -51,4 +51,4 @@ USER jenkins
 ENTRYPOINT ["/bin/tini", "--", "/run_all.sh"]
 
 COPY plugins.txt /usr/share/jenkins/plugins.txt
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
+RUN plugins.sh /usr/share/jenkins/plugins.txt
