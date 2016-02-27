@@ -15,7 +15,12 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN wget -O /usr/local/bin/composer https://getcomposer.org/composer.phar && chmod +x /usr/local/bin/composer
+RUN wget -O /usr/local/bin/composer.phar https://getcomposer.org/composer.phar && chmod +x /usr/local/bin/composer.phar; \
+    echo 'COMPOSER=$(which composer.phar)' >> /usr/local/bin/composer; \
+    echo 'php5dismod -s cli xdebug' >> /usr/local/bin/composer; \
+    echo '$COMPOSER $@' >> /usr/local/bin/composer; \
+    echo 'php5enmod -s cli xdebug' >> /usr/local/bin/composer; \
+    chmod +x /usr/local/bin/composer;
 
 ENV PATH /var/composer/bin:$PATH
 
