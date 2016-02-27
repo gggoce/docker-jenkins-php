@@ -28,8 +28,18 @@ RUN	phpcs --config-set installed_paths /var/composer/vendor/escapestudios/symfon
 
 RUN echo "xdebug.max_nesting_level = 500" >> /etc/php5/mods-available/xdebug.ini
 
+RUN echo 'if [ -z "$GITHUB_TOKEN" ]; then echo "No GITHUB_TOKEN env set!" && exit 1; fi' > /set_github.sh; \
+	echo "composer config -g github-oauth.github.com $GITHUB_TOKEN" >> /set_github.sh; \
+    chmod +x /set_github.sh;
+
+RUN echo 'if [ -n "$GITHUB_TOKEN" ]; then sh /set_github.sh; fi;' > /run_all.sh; \
+    echo "/usr/local/bin/jenkins.sh" >> /run_all.sh; \
+    chmod +x /run_all.sh;
+
 # Switch to normal mode
 USER jenkins
+
+ENTRYPOINT ["/bin/tini", "--", "/run_all.sh"]
 
 COPY plugins.txt /usr/share/jenkins/plugins.txt
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
