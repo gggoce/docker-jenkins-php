@@ -28,3 +28,11 @@ Configure
 ```
 docker run -ti --name jenkins_tmp -v /var/docker/jenkins:/var/jenkins_home core23/jenkins-php-ci bash
 ```
+
+Issues
+------
+
+### Permission problem with QNAP container station
+
+- Create user **jenkins** with uid **1000**
+- chown shared **jenkins_home** folder
