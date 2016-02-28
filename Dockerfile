@@ -19,10 +19,13 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN wget -O /usr/local/bin/composer.phar https://getcomposer.org/composer.phar && chmod +x /usr/local/bin/composer.phar; \
+    cp -R -d /etc/php5/cli /etc/php5/composer; \
+    rm /etc/php5/composer/conf.d/20-xdebug.ini; \
+    echo 'OLD_SCAN_DIR=$PHP_INI_SCAN_DIR' >> /usr/local/bin/composer; \
+    echo 'export PHP_INI_SCAN_DIR=/etc/php5/composer/conf.d' >> /usr/local/bin/composer; \
     echo 'COMPOSER=$(which composer.phar)' >> /usr/local/bin/composer; \
-    echo 'php5dismod -s cli xdebug' >> /usr/local/bin/composer; \
-    echo '$COMPOSER $@' >> /usr/local/bin/composer; \
-    echo 'php5enmod -s cli xdebug' >> /usr/local/bin/composer; \
+    echo 'php $COMPOSER $@' >> /usr/local/bin/composer; \
+    echo 'export PHP_INI_SCAN_DIR=$OLD_SCAN_DIR' >> /usr/local/bin/composer; \
     chmod +x /usr/local/bin/composer;
 
 ENV PATH /var/composer/bin:$PATH
