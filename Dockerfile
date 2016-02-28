@@ -4,6 +4,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 MAINTAINER Christian Gripp <mail@core23.de>
 
+ENV GITHUB_TOKEN=""
+ENV TIME_ZONE=""
+
 # Switch to install mode
 USER root
 
