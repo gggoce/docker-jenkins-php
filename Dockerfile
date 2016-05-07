@@ -21,7 +21,6 @@ RUN apt-get update \
 RUN wget -O /usr/local/bin/composer.phar https://getcomposer.org/composer.phar && chmod +x /usr/local/bin/composer.phar; \
     cp -R -d /etc/php5/cli /etc/php5/composer; \
     rm /etc/php5/composer/conf.d/20-xdebug.ini; \
-    setfacl -m user:jenkins:r /etc/resolv.conf; \ # NAT bugfix
     echo 'OLD_SCAN_DIR=$PHP_INI_SCAN_DIR' >> /usr/local/bin/composer; \
     echo 'export PHP_INI_SCAN_DIR=/etc/php5/composer/conf.d' >> /usr/local/bin/composer; \
     echo 'COMPOSER=$(which composer.phar)' >> /usr/local/bin/composer; \
