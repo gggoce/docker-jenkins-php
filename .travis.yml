@@ -7,5 +7,7 @@ services:
 
 before_install:
   - docker build -t core23/jenkins-php-ci .
-  - docker run -d --name jenkins-php -p 8080:8080 core23/jenkins-php-ci
-  - docker ps -a
+  - docker run -d -p 8080:8080 --name jenkins-php-ci core23/jenkins-php-ci
+
+script:
+- docker ps | grep -q jenkins-php-ci
