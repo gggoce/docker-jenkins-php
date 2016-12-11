@@ -38,7 +38,7 @@ RUN wget -O /usr/local/bin/composer.phar https://getcomposer.org/composer.phar &
 
 
 # Switch to normal mode
-USER ${user}
+USER jenkins
 
 ENV PATH /var/composer/bin:$PATH
 
