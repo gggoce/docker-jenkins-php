@@ -1,6 +1,11 @@
 Jenkins CI with PHP support
 ===========================
 
+[![Build Status](http://img.shields.io/travis/core23/docker-jenkins-php.svg)](https://travis-ci.org/core23/docker-jenkins-php)
+
+[![Donate to this project using Flattr](https://img.shields.io/badge/flattr-donate-yellow.svg)](https://flattr.com/profile/core23)
+[![Donate to this project using PayPal](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://paypal.me/gripp)
+
 Create
 ------
 Create a simple image with the the open port 8080.
