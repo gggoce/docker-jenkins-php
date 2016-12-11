@@ -1,9 +1,12 @@
-jenkins-php:
-    build: .
-    ports:
-        - "50000:50000"
-        - "8080:8080"
-    environment:
-        TIME_ZONE: Europe/Berlin
-    volumes:
-        - ~/docker_data/jenkins:/var/jenkins_home
+version: '2'
+
+services:
+    jenkins:
+        build: .
+        ports:
+            - "50000:50000"
+            - "8080:8080"
+        environment:
+            TIMEZONE: ${TIMEZONE}
+        volumes:
+            - ${LOCAL_DATA}:/var/jenkins_home
