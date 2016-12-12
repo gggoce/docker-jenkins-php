@@ -2,8 +2,6 @@ FROM jenkins
 
 MAINTAINER Christian Gripp <mail@core23.de>
 
-ENV DEBIAN_FRONTEND noninteractive
-
 # Switch to install mode
 USER root
 
@@ -36,11 +34,14 @@ RUN wget -O /usr/local/bin/composer.phar https://getcomposer.org/composer.phar &
     echo 'export PHP_INI_SCAN_DIR=$OLD_SCAN_DIR' >> /usr/local/bin/composer; \
     chmod +x /usr/local/bin/composer;
 
+RUN mkdir -p /var/composer && chown -R jenkins /var/composer
+
 
 # Switch to normal mode
 USER jenkins
 
-ENV PATH /var/composer/bin:$PATH
+ENV COMPOSER_HOME /var/composer
+ENV PATH          /var/composer/vendor/bin:$PATH
 
 # Composer dependencies
 COPY composer.sh /usr/local/bin/composer.sh

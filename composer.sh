@@ -10,17 +10,14 @@
 
 set -e
 
-export COMPOSER_BIN_DIR=/var/composer/bin
-export COMPOSER_HOME=/var/composer
-
 while read spec || [ -n "$spec" ]; do
     module=(${spec//:/ });
     [[ ${module[0]} =~ ^# ]] && continue
     [[ ${module[0]} =~ ^\s*$ ]] && continue
     [[ -z ${module[1]} ]] && module[1]="@stable"
 
-    echo "Downloading ${module[0]}:${module[1]}"
+    echo "Adding ${module[0]}:${module[1]}"
     composer global require "${module[0]}=${module[1]}" --no-update;
 done  < $1
 
-composer global update --prefer-source --no-interaction
+composer global update --no-interaction
